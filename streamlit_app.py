@@ -36,7 +36,7 @@ with st.container():
 # Show title and description.
 st.title("CuesTalent")
 st.write(
-    "This is a Cuesta chatbot that uses OpenAI's GPT-4o model to generate responses based on internal data."
+    "This is a Cuesta chatbot that uses OpenAI's GPT-4 model to generate responses based on internal data."
 )
 
 # Retrieve the OpenAI API key from Streamlit secrets.
@@ -44,6 +44,15 @@ openai_api_key = st.secrets["api_key"]
 
 # Create an OpenAI client.
 client = OpenAI(api_key=openai_api_key)
+
+# Context information (invisible to the user)
+context = """
+Eduardo Mateus has the following Skills: Data Pipeline - Databricks, Data Pipeline - Keboola, Data Pipeline - Microsoft, Data Warehouse - Snowflake, Data Warehouse - Databricks, Data Viz - PowerBI.
+Simón Lopera has the following Skills: Data Viz - PowerBi, Data Viz - Tableau.
+Simón Vallejo has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Pipeline - Keboola.
+Sebastián Oliveros González has the following Skills: Data Viz - PowerBi, Data Viz - Looker.
+Jasmine Heung has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Viz - Looker, Data Warehouse - Microsoft, Data Pipeline - Keboola, Data Warehouse - Snowflake.
+"""
 
 # Create a session state variable to store the chat messages. This ensures that the
 # messages persist across reruns.
@@ -55,22 +64,24 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Create a chat input field to allow the user to enter a message. This will display
-# automatically at the bottom of the page.
+# Create a chat input field to allow the user to enter a message.
 if prompt := st.chat_input("What do you want to know about Cuesta Skills, Methodologies, Industry/Function Expertise?"):
 
-    # Store and display the current prompt.
-    st.session_state.messages.append({"role": "user", "content": "In base of this information: Eduardo Mateus has the following Skills: Data Pipeline - Databricks, Data Pipeline - Keboola, Data Pipeline - Microsoft, Data Warehouse - Snowflake, Data Warehouse - Databricks, Data Viz - PowerBI. Simón Lopera has the following Skills: Data Viz - PowerBi, Data Viz - Tableau. Simón Vallejo has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Pipeline - Keboola. Sebastián Oliveros González has the following Skills: Data Viz - PowerBi, Data Viz - Looker. Jasmine Heung has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Viz - Looker, Data Warrehouse - Microsoft, Data Pipeline - Keboola, Data Warehouse - Snowflake. Answer the following question" + prompt})
+    # Store the current user prompt (without the context) and display it.
+    st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
+
+    # Combine the context with the user messages for OpenAI API call
+    messages_with_context = [{"role": "system", "content": context}] + [
+        {"role": m["role"], "content": m["content"]}
+        for m in st.session_state.messages
+    ]
 
     # Generate a response using the OpenAI API.
     stream = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {"role": m["role"], "content": m["content"]}
-            for m in st.session_state.messages
-        ],
+        messages=messages_with_context,
         stream=True,
     )
 

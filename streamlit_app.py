@@ -36,7 +36,7 @@ with st.container():
 # Show title and description.
 st.title("CuesTalent")
 st.write(
-    "This is a Cuesta chatbot that uses OpenAI's GPT-3.5 model to generate responses based on internal data."
+    "This is a Cuesta chatbot that uses OpenAI's GPT-4o model to generate responses based on internal data."
 )
 
 # Retrieve the OpenAI API key from Streamlit secrets.
@@ -57,10 +57,10 @@ for message in st.session_state.messages:
 
 # Create a chat input field to allow the user to enter a message. This will display
 # automatically at the bottom of the page.
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("What do you want to know about Cuesta Skills, Methodologies, Industry/Function Expertise??"):
 
     # Store and display the current prompt.
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": "Simon Lopera has worked in AWS and Power BI" + prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 

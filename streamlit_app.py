@@ -47,11 +47,20 @@ client = OpenAI(api_key=openai_api_key)
 
 # Context information (invisible to the user)
 context = """
-Eduardo Mateus has the following Skills: Data Pipeline - Databricks, Data Pipeline - Keboola, Data Pipeline - Microsoft, Data Warehouse - Snowflake, Data Warehouse - Databricks, Data Viz - PowerBI.
-Simón Lopera has the following Skills: Data Viz - PowerBi, Data Viz - Tableau.
-Simón Vallejo has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Pipeline - Keboola.
-Sebastián Oliveros González has the following Skills: Data Viz - PowerBi, Data Viz - Looker.
-Jasmine Heung has the following Skills: Data Viz - PowerBi, Data Viz - Tableau, Data Viz - Looker, Data Warehouse - Microsoft, Data Pipeline - Keboola, Data Warehouse - Snowflake.
+The following information is about the skills of the Cuesta Data Team. Each skill its corresponding level (from 1 to 5 being 5 very good and 1 bad):
+Eduardo Mateus (Senior Data Engineer role) has the following Skills: Data Pipeline - Databricks - 5, Data Pipeline - Keboola - 3, Data Pipeline - Microsoft - 5, Data Warehouse - Snowflake - 3, Data Warehouse - Databricks - 5, Data Viz - PowerBI -5.
+Simón Lopera (Associate Consultant role) has the following Skills: Data Viz - PowerBi - 4, Data Viz - Tableau -4.
+Simón Vallejo (Data VIsualization Engineer role) has the following Skills: Data Viz - PowerBi - 5, Data Viz - Tableau - 5, Data Pipeline - Keboola - 2.
+Sebastián Oliveros González (Data VIsualization Engineer role) has the following Skills: Data Viz - PowerBi - 4, Data Viz - Looker - 3.
+Jasmine Heung (Senior Associate role) has the following Skills: Data Viz - PowerBi - 1, Data Viz - Tableau - 3, Data Viz - Looker - 3, Data Warehouse - Microsoft - 2, Data Pipeline - Keboola - 2, Data Warehouse - Snowflake - 4.
+Andrés Jaramillo (Data Engineer role) has the following skills: Data Pipeline - Databricks - 3, Data Warehouse - Databricks - 3.
+David Jaramillo (Associate Consultant role) has the following skills: Data Pipeline - Google - 5, Data Pipeline - Keboola - 4, Data Viz - PwerBi - 4, Data Warehouse - Google - 4, Data Warehouse - Snowflake - 4.
+Estefany Aguilar (Data Engineer role) has the following skills: Data Pipeline - Keboola - 3, Data Warhouse - Snowflake - 3.
+Filip Kawka (Senior Associate role) has the following skills: Data Viz - Looker - 3, Data Warehouse - Snowflake - 3.
+Holt Zeidler (Principal role) has the following skills: Data Pipeline - Keboola - 1, Data Viz - Tableau - 1.
+Jack Lewis (Associate role) has the following skills: Data Pipeline - Keboola - 1, Data Viz - PowerBi - 3, Data Viz - Tableau - 3.
+Marcus Wong (Manager role) has the following skills: Data Pipeline - Keboola - 1.
+
 """
 
 # Create a session state variable to store the chat messages. This ensures that the

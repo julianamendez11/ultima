@@ -57,7 +57,7 @@ for message in st.session_state.messages:
 
 # Create a chat input field to allow the user to enter a message. This will display
 # automatically at the bottom of the page.
-if prompt := st.chat_input("What do you want to know about Cuesta Skills, Methodologies, Industry/Function Expertise??"):
+if prompt := st.chat_input("What do you want to know about Cuesta Skills, Methodologies, Industry/Function Expertise?"):
 
     # Store and display the current prompt.
     st.session_state.messages.append({"role": "user", "content": "In base of this information: Eduardo Mateus has the following Skills: Data Pipeline - Databricks, Data Pipeline - Keboola, Microsoft, Snowflake, Data Viz - PowerBI, answer the following question" + prompt})

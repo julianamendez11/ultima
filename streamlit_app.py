@@ -36,7 +36,7 @@ with st.container():
 # Show title and description.
 st.title("CuesTalent")
 st.write(
-    "This is a Cuesta chatbot that uses OpenAI's GPT-4 model to generate responses based on internal data."
+    "This is a Cuesta chatbot that uses OpenAI's GPT-4 model to generate responses based on internal skills data from the Data Team."
 )
 
 # Retrieve the OpenAI API key from Streamlit secrets.

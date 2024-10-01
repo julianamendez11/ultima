@@ -60,7 +60,7 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("What do you want to know about Cuesta Skills, Methodologies, Industry/Function Expertise??"):
 
     # Store and display the current prompt.
-    st.session_state.messages.append({"role": "user", "content": "Simon Lopera has worked in AWS and Power BI" + prompt})
+    st.session_state.messages.append({"role": "user", "content": "In base of this information: Eduardo Mateus has the following Skills: Data Pipeline - Databricks, Data Pipeline - Keboola, Microsoft, Snowflake, Data Viz - PowerBI, answer the following question" + prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
